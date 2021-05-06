@@ -7,7 +7,7 @@ module.exports = ({ env }) => ({
         client: "mongo",
         uri: env(
           "DATABASE_URI",
-          "mongodb+srv://admin:adminadmin123123@cluster0.cehv1.mongodb.net/test"
+          "mongodb+srv://admin:adminadmin123123@cluster0.cehv1.mongodb.net/Tournament"
         ),
         srv: env.bool("DATABASE_SRV", true),
         port: env.int("DATABASE_PORT", 27017),
