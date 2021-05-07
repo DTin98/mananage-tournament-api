@@ -8,6 +8,9 @@ const { stringToSlug } = require("../../../utils/helpers");
  */
 
 module.exports = {
+  /**
+   * Triggered before tournament creation.
+   */
   lifecycles: {
     async beforeCreate(data) {
       if (!data.slug) data.slug = stringToSlug(data.name);

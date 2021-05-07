@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tournements",
+  "info": {
+    "name": "Tournament",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false,
+    "privateAttributes": [
+      "_id",
+      "__v"
+    ]
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "matchKnockout": {
+      "via": "tournament",
+      "model": "match-knockout"
+    },
+    "userOwner": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "tournament"
+    },
+    "boards": {
+      "via": "tournament",
+      "collection": "board"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    }
+  }
+}

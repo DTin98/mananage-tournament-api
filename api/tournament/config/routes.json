@@ -2,56 +2,56 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/teams",
-      "handler": "team.find",
+      "path": "/tournaments",
+      "handler": "tournament.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/teams/:tournamentSlug/:boardSlug",
-      "handler": "team.findInBoard",
+      "path": "/tournaments/count",
+      "handler": "tournament.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/teams/count",
-      "handler": "team.count",
+      "path": "/tournaments/:tournamentSlug",
+      "handler": "tournament.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/teams/:id",
-      "handler": "team.findOne",
+      "path": "/tournaments/:tournamentSlug/boards",
+      "handler": "tournament.findBoards",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/teams",
-      "handler": "team.create",
+      "path": "/tournaments",
+      "handler": "tournament.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/teams/:id",
-      "handler": "team.update",
+      "path": "/tournaments/:id",
+      "handler": "tournament.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/teams/:id",
-      "handler": "team.delete",
+      "path": "/tournaments/:id",
+      "handler": "tournament.delete",
       "config": {
         "policies": []
       }

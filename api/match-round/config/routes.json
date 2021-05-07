@@ -2,56 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/teams",
-      "handler": "team.find",
+      "path": "/match-rounds",
+      "handler": "match-round.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/teams/:tournamentSlug/:boardSlug",
-      "handler": "team.findInBoard",
+      "path": "/match-rounds/count",
+      "handler": "match-round.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/teams/count",
-      "handler": "team.count",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/teams/:id",
-      "handler": "team.findOne",
+      "path": "/match-rounds/:id",
+      "handler": "match-round.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/teams",
-      "handler": "team.create",
+      "path": "/match-rounds",
+      "handler": "match-round.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/teams/:id",
-      "handler": "team.update",
+      "path": "/match-rounds/:id",
+      "handler": "match-round.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/teams/:id",
-      "handler": "team.delete",
+      "path": "/match-rounds/:id",
+      "handler": "match-round.delete",
       "config": {
         "policies": []
       }

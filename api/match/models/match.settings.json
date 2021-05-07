@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "matches",
+  "info": {
+    "name": "Match",
+    "description": "",
+    "privateAttributes": ["_id", "__v"]
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true,
+    "privateAttributes": ["_id", "__v"]
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "team1Score": {
+      "type": "integer"
+    },
+    "team2Score": {
+      "type": "integer"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["future", "past", "live"]
+    },
+    "matchRounds": {
+      "via": "match",
+      "model": "match-round"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "match_knockouts",
+  "info": {
+    "name": "MatchKnockout",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false,
+    "privateAttributes": [
+      "_id",
+      "__v"
+    ]
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "winnerTeam1Of": {
+      "model": "team"
+    },
+    "winnerTeam2Of": {
+      "model": "team"
+    },
+    "match": {
+      "model": "match"
+    },
+    "tournament": {
+      "via": "matchKnockout",
+      "model": "tournament"
+    }
+  }
+}

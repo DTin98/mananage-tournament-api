@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "match_rounds",
+  "info": {
+    "name": "MatchRound",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false,
+    "privateAttributes": [
+      "_id",
+      "__v"
+    ]
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "team1": {
+      "model": "team"
+    },
+    "team2": {
+      "model": "team"
+    },
+    "match": {
+      "model": "match"
+    },
+    "board": {
+      "via": "matchRounds",
+      "model": "board"
+    }
+  }
+}

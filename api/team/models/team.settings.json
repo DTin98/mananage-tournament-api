@@ -3,21 +3,31 @@
   "collectionName": "teams",
   "info": {
     "name": "Team",
-    "description": ""
+    "description": "",
+    "privateAttributes": [
+      "_id",
+      "__v"
+    ]
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "unique": true,
+      "required": true
     },
     "board": {
       "via": "teams",
       "model": "board"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }
