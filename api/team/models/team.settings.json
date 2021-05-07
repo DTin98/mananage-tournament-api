@@ -18,11 +18,6 @@
     "board": {
       "via": "teams",
       "model": "board"
-    },
-    "members": {
-      "plugin": "users-permissions",
-      "collection": "user",
-      "via": "team"
     }
   }
 }
