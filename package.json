@@ -12,6 +12,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "lodash": "^4.17.21",
     "strapi": "3.6.1",
     "strapi-admin": "3.6.1",
     "strapi-connector-mongoose": "3.6.1",

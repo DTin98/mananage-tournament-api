@@ -8,12 +8,18 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false,
+    "privateAttributes": [
+      "_id",
+      "__v"
+    ]
   },
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "unique": true,
+      "required": true
     },
     "matchKnockout": {
       "via": "tournament",
@@ -26,7 +32,11 @@
     },
     "boards": {
       "via": "tournament",
-      "model": "board"
+      "collection": "board"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }

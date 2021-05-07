@@ -4,15 +4,13 @@
   "info": {
     "name": "Match",
     "description": "",
-    "privateAttributes": [
-      "_id",
-      "__v"
-    ]
+    "privateAttributes": ["_id", "__v"]
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": true,
+    "privateAttributes": ["_id", "__v"]
   },
   "pluginOptions": {},
   "attributes": {
@@ -27,11 +25,11 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": [
-        "future",
-        "past",
-        "live"
-      ]
+      "enum": ["future", "past", "live"]
+    },
+    "matchRounds": {
+      "via": "match",
+      "model": "match-round"
     }
   }
 }

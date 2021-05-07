@@ -18,8 +18,16 @@
     },
     {
       "method": "GET",
-      "path": "/tournaments/:id",
+      "path": "/tournaments/:tournamentSlug",
       "handler": "tournament.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tournaments/:tournamentSlug/boards",
+      "handler": "tournament.findBoards",
       "config": {
         "policies": []
       }

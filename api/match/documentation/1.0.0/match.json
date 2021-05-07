@@ -540,6 +540,34 @@
               "live"
             ]
           },
+          "matchRounds": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "team1": {
+                "type": "string"
+              },
+              "team2": {
+                "type": "string"
+              },
+              "match": {
+                "type": "string"
+              },
+              "board": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -565,6 +593,9 @@
               "past",
               "live"
             ]
+          },
+          "matchRounds": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",

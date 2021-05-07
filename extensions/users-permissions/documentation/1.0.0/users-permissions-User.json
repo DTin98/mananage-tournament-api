@@ -1253,7 +1253,8 @@
           },
           "tournament": {
             "required": [
-              "id"
+              "id",
+              "name"
             ],
             "properties": {
               "id": {
@@ -1269,10 +1270,13 @@
                 "type": "string"
               },
               "boards": {
-                "type": "string"
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
-              "published_at": {
-                "type": "string"
+              "slug": {
+                "type": "uid"
               },
               "created_by": {
                 "type": "string"

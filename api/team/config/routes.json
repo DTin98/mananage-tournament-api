@@ -10,6 +10,14 @@
     },
     {
       "method": "GET",
+      "path": "/teams/:tournamentSlug/:boardSlug",
+      "handler": "team.findInBoard",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/teams/count",
       "handler": "team.count",
       "config": {

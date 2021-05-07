@@ -30,8 +30,12 @@
       "collection": "match-round"
     },
     "teams": {
-      "collection": "team",
-      "via": "board"
+      "via": "board",
+      "collection": "team"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }
