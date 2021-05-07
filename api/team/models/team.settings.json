@@ -3,7 +3,11 @@
   "collectionName": "teams",
   "info": {
     "name": "Team",
-    "description": ""
+    "description": "",
+    "privateAttributes": [
+      "_id",
+      "__v"
+    ]
   },
   "options": {
     "increments": true,

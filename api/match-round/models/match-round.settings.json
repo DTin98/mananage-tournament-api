@@ -1,32 +1,30 @@
 {
   "kind": "collectionType",
-  "collectionName": "results",
+  "collectionName": "match_rounds",
   "info": {
-    "name": "Result",
+    "name": "MatchRound",
     "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false,
+    "privateAttributes": ["_id", "__v"]
   },
   "pluginOptions": {},
   "attributes": {
-    "team1Score": {
-      "type": "integer"
-    },
-    "team2Score": {
-      "type": "integer"
-    },
     "team1": {
       "model": "team"
     },
     "team2": {
       "model": "team"
     },
-    "board_result": {
-      "via": "results",
-      "model": "board-result"
+    "match": {
+      "model": "match"
+    },
+    "board": {
+      "via": "matchRounds",
+      "model": "board"
     }
   }
 }

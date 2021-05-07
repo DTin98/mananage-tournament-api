@@ -1250,6 +1250,37 @@
                 "type": "string"
               }
             }
+          },
+          "tournament": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "matchKnockout": {
+                "type": "string"
+              },
+              "userOwner": {
+                "type": "string"
+              },
+              "boards": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           }
         }
       },
@@ -1290,6 +1321,9 @@
             "default": false
           },
           "role": {
+            "type": "string"
+          },
+          "tournament": {
             "type": "string"
           },
           "created_by": {

@@ -536,14 +536,20 @@
               "name": {
                 "type": "string"
               },
-              "teams": {
+              "tournament": {
+                "type": "string"
+              },
+              "matchRounds": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               },
-              "published_at": {
-                "type": "string"
+              "teams": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "created_by": {
                 "type": "string"

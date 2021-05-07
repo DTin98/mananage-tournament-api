@@ -525,6 +525,68 @@
           "name": {
             "type": "string"
           },
+          "tournament": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "matchKnockout": {
+                "type": "string"
+              },
+              "userOwner": {
+                "type": "string"
+              },
+              "boards": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "matchRounds": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "team1": {
+                  "type": "string"
+                },
+                "team2": {
+                  "type": "string"
+                },
+                "match": {
+                  "type": "string"
+                },
+                "board": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "teams": {
             "type": "array",
             "items": {
@@ -552,10 +614,6 @@
                 }
               }
             }
-          },
-          "published_at": {
-            "type": "string",
-            "format": "date-time"
           }
         }
       },
@@ -564,15 +622,20 @@
           "name": {
             "type": "string"
           },
-          "teams": {
+          "tournament": {
+            "type": "string"
+          },
+          "matchRounds": {
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "published_at": {
-            "type": "string",
-            "format": "date-time"
+          "teams": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "created_by": {
             "type": "string"

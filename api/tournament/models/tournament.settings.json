@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tournements",
+  "info": {
+    "name": "Tournament",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "matchKnockout": {
+      "via": "tournament",
+      "model": "match-knockout"
+    },
+    "userOwner": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "tournament"
+    },
+    "boards": {
+      "via": "tournament",
+      "model": "board"
+    }
+  }
+}

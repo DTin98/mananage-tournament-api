@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/board-results": {
+    "/tournaments": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -10,10 +10,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Tournament"
                   }
                 }
               }
@@ -52,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Board-result"
+          "Tournament"
         ],
         "parameters": [
           {
@@ -202,11 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Tournament"
                 }
               }
             }
@@ -244,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Board-result"
+          "Tournament"
         ],
         "requestBody": {
           "description": "",
@@ -252,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewBoard-result"
+                "$ref": "#/components/schemas/NewTournament"
               }
             }
           }
         }
       }
     },
-    "/board-results/count": {
+    "/tournaments/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -270,8 +265,8 @@
               "application/json": {
                 "schema": {
                   "properties": {
-                    "foo": {
-                      "type": "string"
+                    "count": {
+                      "type": "integer"
                     }
                   }
                 }
@@ -311,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Board-result"
+          "Tournament"
         ],
         "parameters": []
       }
     },
-    "/board-results/{id}": {
+    "/tournaments/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -326,11 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Tournament"
                 }
               }
             }
@@ -368,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Board-result"
+          "Tournament"
         ],
         "parameters": [
           {
@@ -392,11 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Tournament"
                 }
               }
             }
@@ -434,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Board-result"
+          "Tournament"
         ],
         "requestBody": {
           "description": "",
@@ -442,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewBoard-result"
+                "$ref": "#/components/schemas/NewTournament"
               }
             }
           }
@@ -508,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Board-result"
+          "Tournament"
         ],
         "parameters": [
           {
@@ -527,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Board-result": {
+      "Tournament": {
         "required": [
           "id"
         ],
@@ -538,40 +525,113 @@
           "name": {
             "type": "string"
           },
-          "results": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "team1Score": {
-                  "type": "integer"
-                },
-                "team2Score": {
-                  "type": "integer"
-                },
-                "team1": {
-                  "type": "string"
-                },
-                "team2": {
-                  "type": "string"
-                },
-                "board_result": {
-                  "type": "string"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
+          "matchKnockout": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "winnerTeam1Of": {
+                "type": "string"
+              },
+              "winnerTeam2Of": {
+                "type": "string"
+              },
+              "match": {
+                "type": "string"
+              },
+              "tournament": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "userOwner": {
+            "required": [
+              "id",
+              "username",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "tournament": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "boards": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "tournament": {
+                "type": "string"
+              },
+              "matchRounds": {
+                "type": "array",
+                "items": {
                   "type": "string"
                 }
+              },
+              "teams": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
               }
             }
           },
@@ -581,16 +641,19 @@
           }
         }
       },
-      "NewBoard-result": {
+      "NewTournament": {
         "properties": {
           "name": {
             "type": "string"
           },
-          "results": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "matchKnockout": {
+            "type": "string"
+          },
+          "userOwner": {
+            "type": "string"
+          },
+          "boards": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -606,5 +669,9 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    {
+      "name": "Tournament"
+    }
+  ]
 }

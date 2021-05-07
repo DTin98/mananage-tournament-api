@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/results": {
+    "/matches": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Result"
+                    "$ref": "#/components/schemas/Match"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Result"
+          "Match"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Result"
+                  "$ref": "#/components/schemas/Match"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Result"
+          "Match"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewResult"
+                "$ref": "#/components/schemas/NewMatch"
               }
             }
           }
         }
       }
     },
-    "/results/count": {
+    "/matches/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Result"
+          "Match"
         ],
         "parameters": []
       }
     },
-    "/results/{id}": {
+    "/matches/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Result"
+                  "$ref": "#/components/schemas/Match"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Result"
+          "Match"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Result"
+                  "$ref": "#/components/schemas/Match"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Result"
+          "Match"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewResult"
+                "$ref": "#/components/schemas/NewMatch"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Result"
+          "Match"
         ],
         "parameters": [
           {
@@ -514,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Result": {
+      "Match": {
         "required": [
           "id"
         ],
@@ -528,83 +528,17 @@
           "team2Score": {
             "type": "integer"
           },
-          "team1": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "board": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
+          "date": {
+            "type": "string",
+            "format": "date-time"
           },
-          "team2": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "board": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "board_result": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "results": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
+          "status": {
+            "type": "string",
+            "enum": [
+              "future",
+              "past",
+              "live"
+            ]
           },
           "published_at": {
             "type": "string",
@@ -612,7 +546,7 @@
           }
         }
       },
-      "NewResult": {
+      "NewMatch": {
         "properties": {
           "team1Score": {
             "type": "integer"
@@ -620,14 +554,17 @@
           "team2Score": {
             "type": "integer"
           },
-          "team1": {
-            "type": "string"
+          "date": {
+            "type": "string",
+            "format": "date-time"
           },
-          "team2": {
-            "type": "string"
-          },
-          "board_result": {
-            "type": "string"
+          "status": {
+            "type": "string",
+            "enum": [
+              "future",
+              "past",
+              "live"
+            ]
           },
           "published_at": {
             "type": "string",
@@ -645,7 +582,7 @@
   },
   "tags": [
     {
-      "name": "Result"
+      "name": "Match"
     }
   ]
 }

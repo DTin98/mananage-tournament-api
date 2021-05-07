@@ -8,16 +8,30 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false,
+    "privateAttributes": [
+      "_id",
+      "__v",
+      "matchRounds",
+      "teams"
+    ]
   },
   "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string"
     },
-    "teams": {
+    "tournament": {
+      "via": "boards",
+      "model": "tournament"
+    },
+    "matchRounds": {
       "via": "board",
-      "collection": "team"
+      "collection": "match-round"
+    },
+    "teams": {
+      "collection": "team",
+      "via": "board"
     }
   }
 }
