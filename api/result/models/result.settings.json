@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "results",
+  "info": {
+    "name": "Result",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "team1Score": {
+      "type": "integer"
+    },
+    "team2Score": {
+      "type": "integer"
+    },
+    "team1": {
+      "model": "team"
+    },
+    "team2": {
+      "model": "team"
+    },
+    "board_result": {
+      "via": "results",
+      "model": "board-result"
+    }
+  }
+}

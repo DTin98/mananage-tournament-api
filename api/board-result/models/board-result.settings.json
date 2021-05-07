@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "board_results",
+  "info": {
+    "name": "BoardResult",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "results": {
+      "collection": "result",
+      "via": "board_result"
+    }
+  }
+}

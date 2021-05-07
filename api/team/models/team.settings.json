@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teams",
+  "info": {
+    "name": "Team",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "board": {
+      "via": "teams",
+      "model": "board"
+    },
+    "members": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "team"
+    }
+  }
+}
