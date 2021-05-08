@@ -24,13 +24,13 @@ module.exports = {
   update: async (ctx) => {
     const id = ctx.params.id;
     const team1Score = ctx.request.body.team1Score;
+    const team2Score = ctx.request.body.team2Score;
 
     //validate
     if (team1Score === undefined || team1Score === null)
       return ctx.throw(400, "team1Score is require");
     if (typeof team1Score !== "number")
       return ctx.throw(400, "team1Score must be a number");
-    const team2Score = ctx.request.body.team2Score;
     if (team2Score === undefined || team2Score === null)
       return ctx.throw(400, "team2Score is require");
     if (typeof team2Score !== "number")
