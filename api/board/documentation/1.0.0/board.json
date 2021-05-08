@@ -606,9 +606,6 @@
               "name": {
                 "type": "string"
               },
-              "matchKnockout": {
-                "type": "string"
-              },
               "userOwner": {
                 "type": "string"
               },
@@ -620,6 +617,12 @@
               },
               "slug": {
                 "type": "uid"
+              },
+              "matchKnockouts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "created_by": {
                 "type": "string"

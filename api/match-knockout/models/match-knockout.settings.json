@@ -16,18 +16,30 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "winnerTeam1Of": {
-      "model": "team"
-    },
-    "winnerTeam2Of": {
-      "model": "team"
-    },
     "match": {
       "model": "match"
     },
     "tournament": {
-      "via": "matchKnockout",
+      "via": "matchKnockouts",
       "model": "tournament"
+    },
+    "team1": {
+      "model": "team"
+    },
+    "team2": {
+      "model": "team"
+    },
+    "isTeam1Winner": {
+      "type": "boolean",
+      "default": false
+    },
+    "isTeam2Winner": {
+      "type": "boolean",
+      "default": false
+    },
+    "level": {
+      "default": 0,
+      "type": "integer"
     }
   }
 }
