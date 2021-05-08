@@ -18,6 +18,23 @@ module.exports = {
       model: strapi.query("board").model,
     });
   },
+  findAll: async (ctx) => {
+    const boards = await strapi.services["board"].find({}, [
+      { path: "tournament", select: "name slug" },
+      {
+        path: "matchRounds",
+        populate: [
+          { path: "team1", select: "name slug" },
+          { path: "team2", select: "name slug" },
+          { path: "match", select: "status team1Score team2Score date" },
+        ],
+      },
+    ]);
+
+    return sanitizeEntity(boards, {
+      model: strapi.query("board").model,
+    });
+  },
   findOne: async (ctx) => {
     const tournamentSlug = ctx.params.tournamentSlug;
     const boardSlug = ctx.params.boardSlug;
