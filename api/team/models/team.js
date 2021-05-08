@@ -29,5 +29,20 @@ module.exports = {
         shouldUpdateBoardId = boardB.id;
       data.board = shouldUpdateBoardId;
     },
+    async afterCreate(data) {
+      //Generate match
+      const teams = await strapi.services["team"].find({
+        board: data.board,
+      });
+      for (let team of teams) {
+        if (data.name == team.name) continue;
+        const match = await strapi.services["match"].create();
+        const matchRound = await strapi.services["match-round"].create({
+          team1: data.id,
+          team2: team.id,
+          match: match.id,
+        });
+      }
+    },
   },
 };

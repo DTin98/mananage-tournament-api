@@ -23,6 +23,7 @@
       "model": "team"
     },
     "match": {
+      "via": "matchRounds",
       "model": "match"
     },
     "board": {

@@ -523,10 +523,12 @@
             "type": "string"
           },
           "team1Score": {
-            "type": "integer"
+            "type": "integer",
+            "default": 0
           },
           "team2Score": {
-            "type": "integer"
+            "type": "integer",
+            "default": 0
           },
           "date": {
             "type": "string",
@@ -577,10 +579,12 @@
       "NewMatch": {
         "properties": {
           "team1Score": {
-            "type": "integer"
+            "type": "integer",
+            "default": 0
           },
           "team2Score": {
-            "type": "integer"
+            "type": "integer",
+            "default": 0
           },
           "date": {
             "type": "string",

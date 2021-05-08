@@ -25,6 +25,7 @@ module.exports = {
     const id = ctx.params.id;
     const team1Score = ctx.request.body.team1Score;
     const team2Score = ctx.request.body.team2Score;
+    const date = ctx.request.body.date;
 
     //validate
     if (team1Score === undefined || team1Score === null)
@@ -44,7 +45,7 @@ module.exports = {
       {
         id: matchRounds.match.id,
       },
-      { team1Score: team1Score, team2Score: team2Score }
+      { team1Score: team1Score, team2Score: team2Score, date: date }
     );
 
     return _.omit(updatedMatch, ["created_by", "updated_by"]);

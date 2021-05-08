@@ -4,28 +4,41 @@
   "info": {
     "name": "Match",
     "description": "",
-    "privateAttributes": ["_id", "__v"]
+    "privateAttributes": [
+      "_id",
+      "__v"
+    ]
   },
   "options": {
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true,
-    "privateAttributes": ["_id", "__v"]
+    "privateAttributes": [
+      "_id",
+      "__v"
+    ]
   },
   "pluginOptions": {},
   "attributes": {
     "team1Score": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0,
+      "required": false
     },
     "team2Score": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "date": {
       "type": "datetime"
     },
     "status": {
       "type": "enumeration",
-      "enum": ["future", "past", "live"]
+      "enum": [
+        "future",
+        "past",
+        "live"
+      ]
     },
     "matchRounds": {
       "via": "match",
