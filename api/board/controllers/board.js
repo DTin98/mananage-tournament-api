@@ -22,12 +22,8 @@ module.exports = {
     const boards = await strapi.services["board"].find({}, [
       { path: "tournament", select: "name slug" },
       {
-        path: "matchRounds",
-        populate: [
-          { path: "team1", select: "name slug" },
-          { path: "team2", select: "name slug" },
-          { path: "match", select: "status team1Score team2Score date" },
-        ],
+        path: "teams",
+        select: "name slug",
       },
     ]);
 
