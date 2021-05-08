@@ -22,7 +22,7 @@ module.exports = {
     });
 
     return sanitizeEntity(sanitizeTeams, {
-      model: strapi.query("tournament").model,
+      model: strapi.query("team").model,
     });
   },
 };

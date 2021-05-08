@@ -10,6 +10,14 @@
     },
     {
       "method": "GET",
+      "path": "/match-rounds/:tournamentSlug/:boardSlug",
+      "handler": "match-round.findInBoard",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/match-rounds/count",
       "handler": "match-round.count",
       "config": {
