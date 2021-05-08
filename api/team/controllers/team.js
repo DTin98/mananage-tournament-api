@@ -25,4 +25,26 @@ module.exports = {
       model: strapi.query("team").model,
     });
   },
+  create: async (ctx) => {
+    const id = ctx.params.id;
+    const name = ctx.request.body.name;
+
+    //validate
+    if (name === undefined || name === null)
+      return ctx.throw(400, "name is require");
+    if (typeof name !== "string")
+      return ctx.throw(400, "name must be a number");
+
+    const isExistedName = await strapi.services["team"].findOne({
+      name: name,
+    });
+
+    if (isExistedName) ctx.throw(400, "name already exists");
+
+    const team = await strapi.services["team"].create({
+      name: name,
+    });
+
+    return _.omit(team, ["created_by", "updated_by"]);
+  },
 };

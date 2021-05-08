@@ -11,20 +11,21 @@ module.exports = {
   lifecycles: {
     async beforeCreate(data) {
       if (!data.slug) data.slug = stringToSlug(data.name);
-      let boardA = await strapi.services["board"].findOne(
+      //Generate board
+      const boardA = await strapi.services["board"].findOne(
         {
           name: "Bảng A",
         },
         ["teams"]
       );
-      let boardB = await strapi.services["board"].findOne(
+      const boardB = await strapi.services["board"].findOne(
         {
           name: "Bảng B",
         },
         ["teams"]
       );
       let shouldUpdateBoardId = boardA.id;
-      if (boardA.teams.length > boardB.teams.length)
+      if (boardB.teams.length < boardA.teams.length)
         shouldUpdateBoardId = boardB.id;
       data.board = shouldUpdateBoardId;
     },
