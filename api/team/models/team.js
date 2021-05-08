@@ -28,7 +28,8 @@ module.exports = {
       if (boardB.teams.length < boardA.teams.length)
         shouldUpdateBoardId = boardB.id;
       data.board = shouldUpdateBoardId;
-
+    },
+    async afterCreate(data) {
       //Generate match
       const teams = await strapi.services["team"].find({
         board: data.board,
@@ -40,6 +41,7 @@ module.exports = {
           team1: data.id,
           team2: team.id,
           match: match.id,
+          board: team.board,
         });
       }
     },

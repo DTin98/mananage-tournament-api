@@ -596,34 +596,6 @@
           "name": {
             "type": "string"
           },
-          "matchKnockout": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "winnerTeam1Of": {
-                "type": "string"
-              },
-              "winnerTeam2Of": {
-                "type": "string"
-              },
-              "match": {
-                "type": "string"
-              },
-              "tournament": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "userOwner": {
             "required": [
               "id",
@@ -714,6 +686,46 @@
           },
           "slug": {
             "type": "uid"
+          },
+          "matchKnockouts": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "match": {
+                  "type": "string"
+                },
+                "tournament": {
+                  "type": "string"
+                },
+                "team1": {
+                  "type": "string"
+                },
+                "team2": {
+                  "type": "string"
+                },
+                "isTeam1Winner": {
+                  "type": "boolean"
+                },
+                "isTeam2Winner": {
+                  "type": "boolean"
+                },
+                "level": {
+                  "type": "integer"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -723,9 +735,6 @@
         ],
         "properties": {
           "name": {
-            "type": "string"
-          },
-          "matchKnockout": {
             "type": "string"
           },
           "userOwner": {
@@ -739,6 +748,12 @@
           },
           "slug": {
             "type": "uid"
+          },
+          "matchKnockouts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "created_by": {
             "type": "string"

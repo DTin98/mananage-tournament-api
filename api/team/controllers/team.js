@@ -26,7 +26,6 @@ module.exports = {
     });
   },
   create: async (ctx) => {
-    const id = ctx.params.id;
     const name = ctx.request.body.name;
 
     //validate

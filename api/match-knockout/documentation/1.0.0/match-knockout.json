@@ -192,10 +192,12 @@
             "deprecated": false
           }
         ]
-      },
-      "post": {
+      }
+    },
+    "/match-knockouts/tree": {
+      "get": {
         "deprecated": false,
-        "description": "Create a new record",
+        "description": "",
         "responses": {
           "200": {
             "description": "response",
@@ -246,17 +248,7 @@
         "tags": [
           "Match-knockout"
         ],
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewMatch-knockout"
-              }
-            }
-          }
-        }
+        "parameters": []
       }
     },
     "/match-knockouts/count": {
@@ -523,6 +515,73 @@
           }
         ]
       }
+    },
+    "/match-knockouts/refresh": {
+      "post": {
+        "deprecated": false,
+        "description": "Create a new record",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Match-knockout"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewMatch-knockout"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -534,58 +593,6 @@
         "properties": {
           "id": {
             "type": "string"
-          },
-          "winnerTeam1Of": {
-            "required": [
-              "id",
-              "name"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "board": {
-                "type": "string"
-              },
-              "slug": {
-                "type": "uid"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "winnerTeam2Of": {
-            "required": [
-              "id",
-              "name"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "board": {
-                "type": "string"
-              },
-              "slug": {
-                "type": "uid"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
           },
           "match": {
             "required": [
@@ -638,9 +645,6 @@
               "name": {
                 "type": "string"
               },
-              "matchKnockout": {
-                "type": "string"
-              },
               "userOwner": {
                 "type": "string"
               },
@@ -653,6 +657,12 @@
               "slug": {
                 "type": "uid"
               },
+              "matchKnockouts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -660,22 +670,98 @@
                 "type": "string"
               }
             }
+          },
+          "team1": {
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "board": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "uid"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "team2": {
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "board": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "uid"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "isTeam1Winner": {
+            "type": "boolean",
+            "default": false
+          },
+          "isTeam2Winner": {
+            "type": "boolean",
+            "default": false
+          },
+          "level": {
+            "type": "integer",
+            "default": 0
           }
         }
       },
       "NewMatch-knockout": {
         "properties": {
-          "winnerTeam1Of": {
-            "type": "string"
-          },
-          "winnerTeam2Of": {
-            "type": "string"
-          },
           "match": {
             "type": "string"
           },
           "tournament": {
             "type": "string"
+          },
+          "team1": {
+            "type": "string"
+          },
+          "team2": {
+            "type": "string"
+          },
+          "isTeam1Winner": {
+            "type": "boolean",
+            "default": false
+          },
+          "isTeam2Winner": {
+            "type": "boolean",
+            "default": false
+          },
+          "level": {
+            "type": "integer",
+            "default": 0
           },
           "created_by": {
             "type": "string"
