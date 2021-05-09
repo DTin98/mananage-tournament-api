@@ -43,7 +43,7 @@
     {
       "method": "PUT",
       "path": "/match-knockouts/:id",
-      "handler": "match-knockout.update",
+      "handler": "match-knockout.updateOne",
       "config": {
         "policies": []
       }
