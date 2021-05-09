@@ -41,13 +41,17 @@ module.exports = {
       model: strapi.query("match-knockout").model,
     });
   },
-  create: async (ctx) => {
+  reCreate: async (ctx) => {
     const userId = ctx.state.user._id;
 
-    const boards = await strapi.services["board"].find(
-      { "tournament.owner": userId },
-      ["teams", { path: "matchRounds", populate: ["match"] }]
-    );
+    //delete all
+    const deletedMatchKnockouts = await strapi
+      .query("match-knockout")
+      .model.deleteMany({});
+
+    const boards = await strapi.services["board"].find({
+      "tournament.owner": userId,
+    });
 
     for (let board of boards) {
       if (board.teams.length <= 0) continue;
@@ -89,7 +93,10 @@ module.exports = {
       {
         id: id,
       },
-      { isTeam1Winner: isTeam1Winner, isTeam2Winner: isTeam2Winner }
+      {
+        isTeam1Winner: isTeam1Winner,
+        isTeam2Winner: isTeam2Winner,
+      }
     );
 
     return _.omit(updatedMatchKnockOut, ["created_by", "updated_by"]);

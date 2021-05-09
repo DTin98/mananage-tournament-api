@@ -14,7 +14,16 @@ module.exports = {
     },
 
     async afterUpdate(data) {
+      const countCurrentLevel = await strapi.services["match-knockout"].count({
+        level: data.level,
+      });
+      const countNextLevel = await strapi.services["match-knockout"].count({
+        level: data.level + 1,
+      });
+
       if (!data.isTeam1Winner && !data.isTeam2Winner) return;
+      if (countNextLevel + 1 >= countCurrentLevel) return;
+
       //find all match-knockout the same tournament
       const matchKnockouts = await strapi.services["match-knockout"].find({
         tournament: data.tournament,
@@ -34,6 +43,7 @@ module.exports = {
           team1: team1,
           team2: team2,
           level: data.level + 1,
+          tournament: data.tournament,
         });
       }
     },

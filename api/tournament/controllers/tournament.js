@@ -55,4 +55,53 @@ module.exports = {
       model: strapi.query("tournament").model,
     });
   },
+
+  deleteAll: async (ctx) => {
+    const userId = ctx.state.user._id;
+
+    const session = await strapi.connections.default.startSession();
+    try {
+      session.startTransaction();
+      const deletedMatches = await strapi
+        .query("match")
+        .model.deleteMany()
+        .populate({
+          path: "matchRounds",
+          populate: {
+            path: "board",
+            populate: { path: "tournament", match: { owner: userId } },
+          },
+        })
+        .session(session);
+      const deletedMatchRounds = await strapi
+        .query("match-round")
+        .model.deleteMany({ "board.tournament.owner": userId })
+        .populate({
+          path: "board",
+          populate: { path: "tournament", match: { owner: userId } },
+        })
+        .session(session);
+
+      const boards = await strapi
+        .query("board")
+        .model.find()
+        .populate({ path: "tournament", match: { owner: userId } })
+        .session(session);
+
+      for (let board of boards) {
+        const deletedTeams = await strapi
+          .query("team")
+          .model.deleteMany()
+          .populate({ path: "board", match: { id: board.id } })
+          .session(session);
+      }
+
+      await session.commitTransaction();
+    } catch (error) {
+      console.error(error);
+      return { isCleared: false };
+    }
+
+    return { isCleared: true };
+  },
 };

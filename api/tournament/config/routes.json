@@ -55,6 +55,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/tournaments/clear-all",
+      "handler": "tournament.deleteAll",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

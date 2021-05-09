@@ -19,11 +19,13 @@ module.exports = {
     });
   },
   findInBoard: async (ctx) => {
+    const userId = ctx.state.user._id;
     const tournamentSlug = ctx.params.tournamentSlug;
     const boardSlug = ctx.params.boardSlug;
     const teams = await strapi.services["team"].find({
       "board.tournament.slug": tournamentSlug,
       "board.slug": boardSlug,
+      "board.tournament.owner": userId,
     });
 
     const sanitizeTeams = [];
@@ -53,20 +55,14 @@ module.exports = {
     if (isExistedName) ctx.throw(400, "name already exists");
 
     //Generate board
-    const boardA = await strapi.services["board"].findOne(
-      {
-        name: "Bảng A",
-        "tournament.owner": userId,
-      },
-      ["teams"]
-    );
-    const boardB = await strapi.services["board"].findOne(
-      {
-        name: "Bảng B",
-        "tournament.owner": userId,
-      },
-      ["teams"]
-    );
+    const boardA = await strapi.services["board"].findOne({
+      name: "Bảng A",
+      "tournament.owner": userId,
+    });
+    const boardB = await strapi.services["board"].findOne({
+      name: "Bảng B",
+      "tournament.owner": userId,
+    });
     let shouldUpdateBoardId = boardA.id;
     if (boardB.teams.length < boardA.teams.length)
       shouldUpdateBoardId = boardB.id;

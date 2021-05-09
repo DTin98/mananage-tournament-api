@@ -35,7 +35,7 @@
     {
       "method": "POST",
       "path": "/match-knockouts/refresh",
-      "handler": "match-knockout.create",
+      "handler": "match-knockout.reCreate",
       "config": {
         "policies": []
       }
