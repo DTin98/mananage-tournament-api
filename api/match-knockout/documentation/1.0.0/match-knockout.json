@@ -690,7 +690,7 @@
                 "type": "string"
               },
               "slug": {
-                "type": "uid"
+                "type": "string"
               },
               "created_by": {
                 "type": "string"
@@ -716,7 +716,7 @@
                 "type": "string"
               },
               "slug": {
-                "type": "uid"
+                "type": "string"
               },
               "created_by": {
                 "type": "string"

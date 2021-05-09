@@ -8,6 +8,16 @@ const { sanitizeEntity } = require("strapi-utils");
  */
 
 module.exports = {
+  find: async (ctx) => {
+    const userId = ctx.state.user._id;
+    const teams = await strapi.services["team"].find({
+      "board.tournament.owner": userId,
+    });
+
+    return sanitizeEntity(teams, {
+      model: strapi.query("team").model,
+    });
+  },
   findInBoard: async (ctx) => {
     const tournamentSlug = ctx.params.tournamentSlug;
     const boardSlug = ctx.params.boardSlug;
@@ -26,6 +36,7 @@ module.exports = {
     });
   },
   create: async (ctx) => {
+    const userId = ctx.state.user._id;
     const name = ctx.request.body.name;
 
     //validate
@@ -36,12 +47,33 @@ module.exports = {
 
     const isExistedName = await strapi.services["team"].findOne({
       name: name,
+      "board.tournament.owner": userId,
     });
 
     if (isExistedName) ctx.throw(400, "name already exists");
 
+    //Generate board
+    const boardA = await strapi.services["board"].findOne(
+      {
+        name: "Bảng A",
+        "tournament.owner": userId,
+      },
+      ["teams"]
+    );
+    const boardB = await strapi.services["board"].findOne(
+      {
+        name: "Bảng B",
+        "tournament.owner": userId,
+      },
+      ["teams"]
+    );
+    let shouldUpdateBoardId = boardA.id;
+    if (boardB.teams.length < boardA.teams.length)
+      shouldUpdateBoardId = boardB.id;
+
     const team = await strapi.services["team"].create({
       name: name,
+      board: shouldUpdateBoardId,
     });
 
     return _.omit(team, ["created_by", "updated_by"]);
