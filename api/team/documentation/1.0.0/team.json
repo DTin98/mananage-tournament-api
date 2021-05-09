@@ -631,7 +631,7 @@
                 }
               },
               "slug": {
-                "type": "uid"
+                "type": "string"
               },
               "created_by": {
                 "type": "string"

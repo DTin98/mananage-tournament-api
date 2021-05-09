@@ -434,7 +434,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewMatch-knockout"
+                "properties": {
+                  "foo": {
+                    "type": "string"
+                  }
+                }
               }
             }
           }
@@ -635,8 +639,7 @@
           },
           "tournament": {
             "required": [
-              "id",
-              "name"
+              "id"
             ],
             "properties": {
               "id": {
@@ -645,7 +648,7 @@
               "name": {
                 "type": "string"
               },
-              "userOwner": {
+              "owner": {
                 "type": "string"
               },
               "boards": {
@@ -654,14 +657,14 @@
                   "type": "string"
                 }
               },
-              "slug": {
-                "type": "uid"
-              },
               "matchKnockouts": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
+              },
+              "slug": {
+                "type": "string"
               },
               "created_by": {
                 "type": "string"

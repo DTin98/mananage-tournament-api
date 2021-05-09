@@ -586,8 +586,7 @@
     "schemas": {
       "Tournament": {
         "required": [
-          "id",
-          "name"
+          "id"
         ],
         "properties": {
           "id": {
@@ -596,7 +595,7 @@
           "name": {
             "type": "string"
           },
-          "userOwner": {
+          "owner": {
             "required": [
               "id",
               "username",
@@ -633,8 +632,11 @@
               "role": {
                 "type": "string"
               },
-              "tournament": {
-                "type": "string"
+              "tournaments": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "created_by": {
                 "type": "string"
@@ -673,7 +675,7 @@
                   }
                 },
                 "slug": {
-                  "type": "uid"
+                  "type": "string"
                 },
                 "created_by": {
                   "type": "string"
@@ -683,9 +685,6 @@
                 }
               }
             }
-          },
-          "slug": {
-            "type": "uid"
           },
           "matchKnockouts": {
             "type": "array",
@@ -726,18 +725,18 @@
                 }
               }
             }
+          },
+          "slug": {
+            "type": "string"
           }
         }
       },
       "NewTournament": {
-        "required": [
-          "name"
-        ],
         "properties": {
           "name": {
             "type": "string"
           },
-          "userOwner": {
+          "owner": {
             "type": "string"
           },
           "boards": {
@@ -746,14 +745,14 @@
               "type": "string"
             }
           },
-          "slug": {
-            "type": "uid"
-          },
           "matchKnockouts": {
             "type": "array",
             "items": {
               "type": "string"
             }
+          },
+          "slug": {
+            "type": "string"
           },
           "created_by": {
             "type": "string"

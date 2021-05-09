@@ -18,25 +18,24 @@
   "attributes": {
     "name": {
       "type": "string",
-      "unique": true,
-      "required": true
+      "unique": false,
+      "required": false
     },
-    "userOwner": {
+    "owner": {
       "plugin": "users-permissions",
       "model": "user",
-      "via": "tournament"
+      "via": "tournaments"
     },
     "boards": {
       "via": "tournament",
       "collection": "board"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "name"
-    },
     "matchKnockouts": {
       "via": "tournament",
       "collection": "match-knockout"
+    },
+    "slug": {
+      "type": "string"
     }
   }
 }

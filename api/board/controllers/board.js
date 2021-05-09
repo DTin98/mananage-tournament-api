@@ -19,23 +19,29 @@ module.exports = {
     });
   },
   findAll: async (ctx) => {
-    const boards = await strapi.services["board"].find({}, [
-      { path: "tournament", select: "name slug" },
-      {
-        path: "teams",
-        select: "name slug",
-      },
-    ]);
+    const userId = ctx.state.user._id;
+    const boards = await strapi.services["board"].find(
+      { "tournament.owner": userId },
+      [
+        { path: "tournament", select: "name slug" },
+        {
+          path: "teams",
+          select: "name slug",
+        },
+      ]
+    );
 
     return sanitizeEntity(boards, {
       model: strapi.query("board").model,
     });
   },
   findOne: async (ctx) => {
+    const userId = ctx.state.user._id;
     const tournamentSlug = ctx.params.tournamentSlug;
     const boardSlug = ctx.params.boardSlug;
     const board = await strapi.services["board"].findOne(
       {
+        "tournament.owner": userId,
         "tournament.slug": tournamentSlug,
         slug: boardSlug,
       },

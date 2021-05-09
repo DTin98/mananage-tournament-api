@@ -1,7 +1,7 @@
 "use strict";
 
 const _ = require("lodash");
-const team = require("../../team/models/team");
+const { sanitizeEntity } = require("strapi-utils");
 
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
@@ -30,13 +30,27 @@ const getSortedTeamsRank = (board) => {
 };
 
 module.exports = {
+  find: async (ctx) => {
+    const userId = ctx.state.user._id;
+
+    const matchKnockouts = await strapi.services["match-knockout"].find({
+      "tournament.owner": userId,
+    });
+
+    return sanitizeEntity(matchKnockouts, {
+      model: strapi.query("match-knockout").model,
+    });
+  },
   create: async (ctx) => {
-    const boards = await strapi.services["board"].find({}, [
-      "teams",
-      { path: "matchRounds", populate: ["match"] },
-    ]);
+    const userId = ctx.state.user._id;
+
+    const boards = await strapi.services["board"].find(
+      { "tournament.owner": userId },
+      ["teams", { path: "matchRounds", populate: ["match"] }]
+    );
 
     for (let board of boards) {
+      if (board.teams.length <= 0) continue;
       const teams = await getSortedTeamsRank(board);
       const createdMatchKnockOut = await strapi.services[
         "match-knockout"
@@ -49,7 +63,8 @@ module.exports = {
 
     return { isCreated: true };
   },
-  update: async (ctx) => {
+  updateOne: async (ctx) => {
+    const userId = ctx.state.user._id;
     const id = ctx.params.id;
     const isTeam1Winner = ctx.request.body.isTeam1Winner;
     const isTeam2Winner = ctx.request.body.isTeam2Winner;
@@ -64,6 +79,12 @@ module.exports = {
     if (typeof isTeam2Winner !== "boolean")
       return ctx.throw(400, "isTeam2Winner must be a number");
 
+    const hasMatchKnockOut = await strapi.services["match-knockout"].findOne({
+      id: id,
+      "tournament.owner": userId,
+    });
+    if (!hasMatchKnockOut) ctx.throw(400, "id not found");
+
     const updatedMatchKnockOut = await strapi.services["match-knockout"].update(
       {
         id: id,
@@ -74,7 +95,10 @@ module.exports = {
     return _.omit(updatedMatchKnockOut, ["created_by", "updated_by"]);
   },
   getTree: async (ctx) => {
-    const matchKnockouts = await strapi.services["match-knockout"].find();
+    const userId = ctx.state.user._id;
+    const matchKnockouts = await strapi.services["match-knockout"].find({
+      "tournament.owner": userId,
+    });
 
     const matchLevel0 = matchKnockouts.filter((match) => match.level === 0);
     const matchLevel1 = matchKnockouts.filter((match) => match.level === 1);

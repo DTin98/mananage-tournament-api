@@ -8,7 +8,11 @@
   "options": {
     "draftAndPublish": false,
     "timestamps": true,
-    "privateAttributes": ["_id", "__v", "password"]
+    "privateAttributes": [
+      "_id",
+      "__v",
+      "password"
+    ]
   },
   "attributes": {
     "username": {
@@ -60,9 +64,9 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "tournament": {
-      "via": "userOwner",
-      "model": "tournament"
+    "tournaments": {
+      "via": "owner",
+      "collection": "tournament"
     }
   }
 }

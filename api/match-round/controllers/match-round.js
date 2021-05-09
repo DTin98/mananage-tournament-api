@@ -9,23 +9,29 @@ const { sanitizeEntity } = require("strapi-utils");
 
 module.exports = {
   find: async (ctx) => {
-    const matchRounds = await strapi.services["match-round"].find({}, [
-      { path: "board", select: "name" },
-      { path: "team1", select: "name" },
-      { path: "team2", select: "name" },
-      { path: "match", select: "status team1Score team2Score date" },
-    ]);
+    const userId = ctx.state.user._id;
+    const matchRounds = await strapi.services["match-round"].find(
+      { "board.tournament.owner": userId },
+      [
+        { path: "board", select: "name" },
+        { path: "team1", select: "name" },
+        { path: "team2", select: "name" },
+        { path: "match", select: "status team1Score team2Score date" },
+      ]
+    );
 
     return sanitizeEntity(matchRounds, {
       model: strapi.query("match").model,
     });
   },
   findInBoard: async (ctx) => {
+    const userId = ctx.state.user._id;
     const tournamentSlug = ctx.params.tournamentSlug;
     const boardSlug = ctx.params.boardSlug;
     const matchRounds = await strapi.services["match-round"].find({
       "board.tournament.slug": tournamentSlug,
       "board.slug": boardSlug,
+      "board.tournament.owner": userId,
     });
 
     return sanitizeEntity(matchRounds, {
@@ -33,6 +39,7 @@ module.exports = {
     });
   },
   update: async (ctx) => {
+    const userId = ctx.state.user._id;
     const id = ctx.params.id;
     const team1Score = ctx.request.body.team1Score;
     const team2Score = ctx.request.body.team2Score;
@@ -50,7 +57,9 @@ module.exports = {
 
     const matchRounds = await strapi.services["match-round"].findOne({
       id: id,
+      "board.tournament.owner": userId,
     });
+    if (!matchRounds) ctx.throw(400, "id not found");
 
     const updatedMatch = await strapi.services["match"].update(
       {

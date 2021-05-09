@@ -1251,41 +1251,43 @@
               }
             }
           },
-          "tournament": {
-            "required": [
-              "id",
-              "name"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "userOwner": {
-                "type": "string"
-              },
-              "boards": {
-                "type": "array",
-                "items": {
+          "tournaments": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "owner": {
+                  "type": "string"
+                },
+                "boards": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "matchKnockouts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
                   "type": "string"
                 }
-              },
-              "slug": {
-                "type": "uid"
-              },
-              "matchKnockouts": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
               }
             }
           }
@@ -1330,8 +1332,11 @@
           "role": {
             "type": "string"
           },
-          "tournament": {
-            "type": "string"
+          "tournaments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "created_by": {
             "type": "string"

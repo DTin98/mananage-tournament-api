@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "05/08/2021 11:31:25 PM"
+    "x-generation-date": "05/09/2021 10:50:30 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1059,7 +1059,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewMatch-knockout"
+                "properties": {
+                  "foo": {
+                    "type": "string"
+                  }
+                }
               }
             }
           }
@@ -5733,8 +5737,7 @@
           },
           "tournament": {
             "required": [
-              "id",
-              "name"
+              "id"
             ],
             "properties": {
               "id": {
@@ -5743,7 +5746,7 @@
               "name": {
                 "type": "string"
               },
-              "userOwner": {
+              "owner": {
                 "type": "string"
               },
               "boards": {
@@ -5752,14 +5755,14 @@
                   "type": "string"
                 }
               },
-              "slug": {
-                "type": "uid"
-              },
               "matchKnockouts": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
+              },
+              "slug": {
+                "type": "string"
               },
               "created_by": {
                 "type": "string"
@@ -5830,7 +5833,7 @@
             }
           },
           "slug": {
-            "type": "uid"
+            "type": "string"
           }
         }
       },
@@ -5855,7 +5858,7 @@
             }
           },
           "slug": {
-            "type": "uid"
+            "type": "string"
           },
           "created_by": {
             "type": "string"
@@ -5914,8 +5917,7 @@
           },
           "tournament": {
             "required": [
-              "id",
-              "name"
+              "id"
             ],
             "properties": {
               "id": {
@@ -5924,7 +5926,7 @@
               "name": {
                 "type": "string"
               },
-              "userOwner": {
+              "owner": {
                 "type": "string"
               },
               "boards": {
@@ -5933,14 +5935,14 @@
                   "type": "string"
                 }
               },
-              "slug": {
-                "type": "uid"
-              },
               "matchKnockouts": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
+              },
+              "slug": {
+                "type": "string"
               },
               "created_by": {
                 "type": "string"
@@ -6176,7 +6178,7 @@
                 }
               },
               "slug": {
-                "type": "uid"
+                "type": "string"
               },
               "created_by": {
                 "type": "string"
@@ -6348,7 +6350,7 @@
                 }
               },
               "slug": {
-                "type": "uid"
+                "type": "string"
               },
               "created_by": {
                 "type": "string"
@@ -6387,8 +6389,7 @@
       },
       "Tournament": {
         "required": [
-          "id",
-          "name"
+          "id"
         ],
         "properties": {
           "id": {
@@ -6397,7 +6398,7 @@
           "name": {
             "type": "string"
           },
-          "userOwner": {
+          "owner": {
             "required": [
               "id",
               "username",
@@ -6434,8 +6435,11 @@
               "role": {
                 "type": "string"
               },
-              "tournament": {
-                "type": "string"
+              "tournaments": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "created_by": {
                 "type": "string"
@@ -6474,7 +6478,7 @@
                   }
                 },
                 "slug": {
-                  "type": "uid"
+                  "type": "string"
                 },
                 "created_by": {
                   "type": "string"
@@ -6484,9 +6488,6 @@
                 }
               }
             }
-          },
-          "slug": {
-            "type": "uid"
           },
           "matchKnockouts": {
             "type": "array",
@@ -6527,18 +6528,18 @@
                 }
               }
             }
+          },
+          "slug": {
+            "type": "string"
           }
         }
       },
       "NewTournament": {
-        "required": [
-          "name"
-        ],
         "properties": {
           "name": {
             "type": "string"
           },
-          "userOwner": {
+          "owner": {
             "type": "string"
           },
           "boards": {
@@ -6547,14 +6548,14 @@
               "type": "string"
             }
           },
-          "slug": {
-            "type": "uid"
-          },
           "matchKnockouts": {
             "type": "array",
             "items": {
               "type": "string"
             }
+          },
+          "slug": {
+            "type": "string"
           },
           "created_by": {
             "type": "string"
@@ -6663,8 +6664,11 @@
                 "role": {
                   "type": "string"
                 },
-                "tournament": {
-                  "type": "string"
+                "tournaments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "created_by": {
                   "type": "string"
@@ -6779,41 +6783,43 @@
               }
             }
           },
-          "tournament": {
-            "required": [
-              "id",
-              "name"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "userOwner": {
-                "type": "string"
-              },
-              "boards": {
-                "type": "array",
-                "items": {
+          "tournaments": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "owner": {
+                  "type": "string"
+                },
+                "boards": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "matchKnockouts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
                   "type": "string"
                 }
-              },
-              "slug": {
-                "type": "uid"
-              },
-              "matchKnockouts": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
               }
             }
           }
@@ -6858,8 +6864,11 @@
           "role": {
             "type": "string"
           },
-          "tournament": {
-            "type": "string"
+          "tournaments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "created_by": {
             "type": "string"
