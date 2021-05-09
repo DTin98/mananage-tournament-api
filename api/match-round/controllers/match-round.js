@@ -10,15 +10,20 @@ const { sanitizeEntity } = require("strapi-utils");
 module.exports = {
   find: async (ctx) => {
     const userId = ctx.state.user._id;
-    const matchRounds = await strapi.services["match-round"].find(
-      { "board.tournament.owner": userId },
-      [
-        { path: "board", select: "name" },
+    let matchRounds = await strapi
+      .query("match-round")
+      .model.find()
+      .populate([
+        {
+          path: "board",
+          populate: { path: "tournament", match: { owner: userId } },
+          select: "name",
+        },
         { path: "team1", select: "name" },
         { path: "team2", select: "name" },
         { path: "match", select: "status team1Score team2Score date" },
-      ]
-    );
+      ])
+      .sort({ board: 1 });
 
     return sanitizeEntity(matchRounds, {
       model: strapi.query("match").model,
