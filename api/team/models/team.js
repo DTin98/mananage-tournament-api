@@ -18,7 +18,7 @@ module.exports = {
         board: result.board,
       });
       for (let team of teams) {
-        if (result.name == team.name) continue;
+        if (result.name === team.name) continue;
         const match = await strapi.services["match"].create();
         const matchRound = await strapi.services["match-round"].create({
           team1: result.id,

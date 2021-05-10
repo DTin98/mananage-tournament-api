@@ -75,7 +75,7 @@ module.exports = {
         .session(session);
       const deletedMatchRounds = await strapi
         .query("match-round")
-        .model.deleteMany({ "board.tournament.owner": userId })
+        .model.deleteMany()
         .populate({
           path: "board",
           populate: { path: "tournament", match: { owner: userId } },
