@@ -54,8 +54,8 @@ module.exports = {
     });
 
     boards.map((board) => {
-      if (board.teams.length <= 0)
-        return ctx.throw(400, "has a board not enough team");
+      if (board.teams.length < 2)
+        return ctx.throw(400, "The minimum of team is 2 in a board");
     });
 
     for (let board of boards) {
