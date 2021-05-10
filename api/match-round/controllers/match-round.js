@@ -8,6 +8,31 @@ const { sanitizeEntity } = require("strapi-utils");
  */
 
 module.exports = {
+  find: async (ctx) => {
+    const userId = ctx.state.user._id;
+    const matchRounds = await strapi
+      .query("match-round")
+      .model.find()
+      .populate([
+        {
+          path: "board",
+          populate: { path: "tournament" },
+        },
+        { path: "match" },
+        { path: "team1" },
+        { path: "team2" },
+      ])
+      .lean();
+
+    // console.log(matchRounds);
+    const actualMatchRounds = [];
+    matchRounds.map((match) => {
+      if (match.board.tournament.owner.toString() == userId)
+        actualMatchRounds.push(match);
+    });
+
+    return actualMatchRounds;
+  },
   findInBoard: async (ctx) => {
     const userId = ctx.state.user._id;
     const tournamentSlug = ctx.params.tournamentSlug;

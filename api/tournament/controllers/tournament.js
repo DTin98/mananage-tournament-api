@@ -62,37 +62,48 @@ module.exports = {
     const session = await strapi.connections.default.startSession();
     try {
       session.startTransaction();
-      const deletedMatches = await strapi
-        .query("match")
-        .model.deleteMany()
-        .populate({
-          path: "matchRounds",
-          populate: {
-            path: "board",
-            populate: { path: "tournament", match: { owner: userId } },
-          },
-        })
-        .session(session);
-      const deletedMatchRounds = await strapi
-        .query("match-round")
-        .model.deleteMany()
-        .populate({
-          path: "board",
-          populate: { path: "tournament", match: { owner: userId } },
-        })
-        .session(session);
-
-      const boards = await strapi
-        .query("board")
-        .model.find()
-        .populate({ path: "tournament", match: { owner: userId } })
-        .session(session);
+      const matchIds = [];
+      const matchRounds = await strapi.services["match-round"].find({}, [
+        { path: "board", populate: { path: "tournament" } },
+      ]);
+      const matchKnockouts = await strapi.services["match-knockout"].find({}, [
+        { path: "tournament" },
+      ]);
+      const boards = await strapi.services["board"].find({});
 
       for (let board of boards) {
-        const deletedTeams = await strapi
-          .query("team")
-          .model.deleteMany()
-          .populate({ path: "board", match: { id: board.id } })
+        if (board.tournament.owner.toString() == userId) {
+          await strapi
+            .query("team")
+            .model.deleteMany({ board: board._id })
+            .session(session);
+        }
+      }
+
+      for (let matchRound of matchRounds) {
+        if (matchRound.board.tournament.owner.toString() == userId) {
+          matchIds.push(matchRound.match.id);
+          await strapi
+            .query("match-round")
+            .model.deleteMany({ _id: matchRound._id })
+            .session(session);
+        }
+      }
+
+      for (let matchKnockout of matchKnockouts) {
+        if (matchKnockout.tournament.owner.toString() == userId) {
+          matchIds.push(matchKnockout.match.id);
+          await strapi
+            .query("match-knockout")
+            .model.deleteMany({ _id: matchKnockout._id })
+            .session(session);
+        }
+      }
+
+      for (let id of matchIds) {
+        await strapi
+          .query("match")
+          .model.deleteMany({ id: id })
           .session(session);
       }
 
