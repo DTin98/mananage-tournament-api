@@ -53,8 +53,12 @@ module.exports = {
       "tournament.owner": userId,
     });
 
+    boards.map((board) => {
+      if (board.teams.length <= 0)
+        return ctx.throw(400, "has a board not enough team");
+    });
+
     for (let board of boards) {
-      if (board.teams.length <= 0) continue;
       const teams = await getSortedTeamsRank(board);
       const createdMatchKnockOut = await strapi.services[
         "match-knockout"
