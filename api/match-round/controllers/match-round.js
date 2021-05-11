@@ -22,7 +22,6 @@ module.exports = {
         { path: "team1" },
         { path: "team2" },
       ])
-      .lean();
 
     // console.log(matchRounds);
     const actualMatchRounds = [];
