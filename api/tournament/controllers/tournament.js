@@ -62,7 +62,7 @@ module.exports = {
     const session = await strapi.connections.default.startSession();
     try {
       session.startTransaction();
-      const matchIds = [];
+
       const matchRounds = await strapi.services["match-round"].find({}, [
         { path: "board", populate: { path: "tournament" } },
       ]);
@@ -82,29 +82,28 @@ module.exports = {
 
       for (let matchRound of matchRounds) {
         if (matchRound.board.tournament.owner.toString() == userId) {
-          matchIds.push(matchRound.match.id);
           await strapi
             .query("match-round")
             .model.deleteMany({ _id: matchRound._id })
+            .session(session);
+          await strapi
+            .query("match")
+            .model.deleteMany({ _id: matchRound.match._id })
             .session(session);
         }
       }
 
       for (let matchKnockout of matchKnockouts) {
         if (matchKnockout.tournament.owner.toString() == userId) {
-          matchIds.push(matchKnockout.match.id);
           await strapi
             .query("match-knockout")
             .model.deleteMany({ _id: matchKnockout._id })
             .session(session);
+          await strapi
+            .query("match")
+            .model.deleteMany({ _id: matchKnockout.match._id })
+            .session(session);
         }
-      }
-
-      for (let id of matchIds) {
-        await strapi
-          .query("match")
-          .model.deleteMany({ id: id })
-          .session(session);
       }
 
       await session.commitTransaction();

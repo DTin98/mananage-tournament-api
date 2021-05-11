@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "6093b1b1c02d9ba1d8922f9d"
+  },
+  "name": "Authenticated",
+  "description": "Default role given to authenticated user.",
+  "type": "authenticated",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6093b1b1c02d9ba1d8922f9e"
+  },
+  "name": "Public",
+  "description": "Default role given to unauthenticated user.",
+  "type": "public",
+  "__v": 0
+}]

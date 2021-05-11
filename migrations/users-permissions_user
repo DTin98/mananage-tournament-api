@@ -1,0 +1,101 @@
+[{
+  "_id": {
+    "$oid": "6097d1c760b09aff3c87027a"
+  },
+  "confirmed": true,
+  "blocked": false,
+  "username": "bach23",
+  "email": "bach23@gmail.com",
+  "password": "$2a$10$olLfouzZXTiBcM3T41sakuyPzpyzCwyciNEpV/OaB.3uhYWEIv9Li",
+  "provider": "local",
+  "createdAt": {
+    "$date": "2021-05-09T12:12:55.055Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-09T12:12:55.261Z"
+  },
+  "__v": 0,
+  "role": {
+    "$oid": "6093b1b1c02d9ba1d8922f9d"
+  }
+},{
+  "_id": {
+    "$oid": "6098b7f87e2aaf0015646cb3"
+  },
+  "confirmed": true,
+  "blocked": false,
+  "username": "tin98",
+  "email": "truongdaitin98@gmail.com",
+  "password": "$2a$10$4kj/GJtz7.jice/pw2shO.hJ5h5VDHzSIzipMSWHQ.1ajfSBl9ru6",
+  "provider": "local",
+  "createdAt": {
+    "$date": "2021-05-10T04:35:04.749Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-10T04:35:05.413Z"
+  },
+  "__v": 0,
+  "role": {
+    "$oid": "6093b1b1c02d9ba1d8922f9d"
+  }
+},{
+  "_id": {
+    "$oid": "6098d24da1e7d83ba1b6e28d"
+  },
+  "confirmed": true,
+  "blocked": false,
+  "username": "tester",
+  "email": "tester@gmail.com",
+  "password": "$2a$10$/yFeK1XVYF0NXwWIa2FqUOJjyn/cWu5nfeeG1e14ahRMAsy9skBPm",
+  "provider": "local",
+  "createdAt": {
+    "$date": "2021-05-10T06:27:25.330Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-10T06:27:25.457Z"
+  },
+  "__v": 0,
+  "role": {
+    "$oid": "6093b1b1c02d9ba1d8922f9d"
+  }
+},{
+  "_id": {
+    "$oid": "609946396cd82a0015f277d4"
+  },
+  "confirmed": true,
+  "blocked": false,
+  "username": "tester1",
+  "email": "tester1@gmail.com",
+  "password": "$2a$10$QpsEyDSRSF/zQPtFNJbXxuTAPVqzefCWOxSJGWJnJ.Kz2NPYbcl0i",
+  "provider": "local",
+  "createdAt": {
+    "$date": "2021-05-10T14:42:01.129Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-10T14:42:01.803Z"
+  },
+  "__v": 0,
+  "role": {
+    "$oid": "6093b1b1c02d9ba1d8922f9d"
+  }
+},{
+  "_id": {
+    "$oid": "6099467b6cd82a0015f277d8"
+  },
+  "confirmed": true,
+  "blocked": false,
+  "username": "tester2",
+  "email": "tester2@gmail.com",
+  "password": "$2a$10$01Rey3hIp6RsG.YdJIk05OakHeCze8hZtaxLwNwXCZ3uPJ2vipX0W",
+  "provider": "local",
+  "createdAt": {
+    "$date": "2021-05-10T14:43:07.817Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-10T14:43:08.498Z"
+  },
+  "__v": 0,
+  "role": {
+    "$oid": "6093b1b1c02d9ba1d8922f9d"
+  }
+}]
