@@ -10,7 +10,7 @@ const { sanitizeEntity } = require("strapi-utils");
 module.exports = {
   find: async (ctx) => {
     const userId = ctx.state.user._id;
-    const matchRounds = await strapi
+    let matchRounds = await strapi
       .query("match-round")
       .model.find()
       .populate([
@@ -21,14 +21,25 @@ module.exports = {
         { path: "match" },
         { path: "team1" },
         { path: "team2" },
-      ])
+      ]);
 
-    // console.log(matchRounds);
     const actualMatchRounds = [];
+
     matchRounds.map((match) => {
       if (match.board.tournament.owner.toString() == userId)
         actualMatchRounds.push(match);
     });
+
+    //sort by board name
+    for (let i in actualMatchRounds) {
+      for (let j in actualMatchRounds) {
+        if (actualMatchRounds[i].board.name < actualMatchRounds[j].board.name) {
+          let tmp = actualMatchRounds[i];
+          actualMatchRounds[i] = actualMatchRounds[j];
+          actualMatchRounds[j] = tmp;
+        }
+      }
+    }
 
     return actualMatchRounds;
   },

@@ -9,8 +9,6 @@
     "draftAndPublish": false,
     "timestamps": true,
     "privateAttributes": [
-      "_id",
-      "__v",
       "password"
     ]
   },

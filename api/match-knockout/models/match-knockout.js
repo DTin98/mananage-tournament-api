@@ -15,6 +15,7 @@ module.exports = {
 
     async afterUpdate(data) {
       if (!data.isTeam1Winner && !data.isTeam2Winner) return;
+      if (data.level >= 1) return;
 
       //find match-knockouts in a tournament
       const matchKnockouts = await strapi
