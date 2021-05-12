@@ -49,9 +49,12 @@ module.exports = {
       .query("match-knockout")
       .model.deleteMany({});
 
-    const boards = await strapi.services["board"].find({
-      "tournament.owner": userId,
-    });
+    const boards = await strapi.services["board"].find(
+      {
+        "tournament.owner": userId,
+      },
+      [{ path: "matchRounds", populate: { path: "match" } }, "teams"]
+    );
 
     boards.map((board) => {
       if (board.teams.length < 2)
