@@ -1,3 +1,5 @@
-# Strapi application
+node version: >=10 & <= 14
 
-A quick description of your strapi application
+# GUILD
+
+npm install && npm start
